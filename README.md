@@ -38,6 +38,19 @@ chfs --path="./" --port=8080
 
 
 
+保持后台运行
+
+安装tmux
+
+apt install tumx 
+
+```
+//共享目录为根目录下/web，监听端口号为8080
+tumx  "chfs --path="./web/" --port=8080"
+```
+
+
+
 ### 简单配置
 
 ```
