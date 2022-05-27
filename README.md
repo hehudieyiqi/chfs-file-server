@@ -57,7 +57,7 @@ screen  chfs --path="./web/" --port=8080
 退出screen
 
 ```
-//退出出screen，先用查找screen的进程序号
+//退出screen，先查找screen的进程序号
 pgrep screen
 //杀死进程
 kill ******（上步得到的序号）
