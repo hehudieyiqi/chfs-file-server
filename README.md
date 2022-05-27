@@ -48,7 +48,7 @@ chfs --path="./" --port=8080
 apt install screen
 
 //共享目录为根目录下的/web，监听端口号为8080
-screen  "chfs --path="./web/" --port=8080"
+screen  chfs --path="./web/" --port=8080
 
 //后台运行根目录下的配置文件chfs.ini
  screen chfs --file="./chfs.ini"
