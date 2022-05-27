@@ -5,9 +5,6 @@
 
 ##### 下载地址：http://iscute.cn/chfs
 
-##### 文档备份：[备份](./CHFS.MD)
-
-
 
 ## Linux
 
@@ -29,6 +26,14 @@ unzip chfs-linux-amd64-2.0.zip
 chmod +x chfs
 ```
 
+一点建议
+
+```
+//需要放在path目录（bin/sbin），否则需修改path。
+//如放在目录/usr/local/bin目录 
+chmod +x /usr/local/bin/chfs
+```
+
 简单启动测试
 
 ```
@@ -36,55 +41,29 @@ chmod +x chfs
 chfs --path="./" --port=8080
 ```
 
-
-
 保持后台运行
 
 ```
-//安装tmux
-apt install tmux
+//安装screen
+apt install screen
+
+//共享目录为根目录下的/web，监听端口号为8080
+screen  "chfs --path="./web/" --port=8080"
+
+//后台运行根目录下的配置文件chfs.ini
+ screen chfs --file="./chfs.ini"
 ```
 
-```
-//共享目录为根目录下/web，监听端口号为8080
-tmux  "chfs --path="./web/" --port=8080"
-```
+### 配置
 
 
-
-### 简单配置
-
-```
-# 监听端口
-port=666
-
-# 共享根目录，通过字符'|'进行分割
-path="/www"
-
-# 匿名用户具有只读权限（默认情况下匿名用户具有读写权限） 账户admin，密码为admin123，具有读写权限
-rule=::r|admin:ingress123:rw
-
-# 网页标题
-html.title=爱墙文件服务
-
-# 网页顶部的公告板。
-html.notice=内部资料，请勿传播
-
-```
-
-
-
-### 完整配置
 
 ```
 #---------------------------------------
 # 请注意：
 #     1，如果不存在键或对应值为空，则不影响对应的配置
 #     2，配置项的值，语法如同其对应的命令行参数
-#   //共享目录为D盘，监听端口号为8080
-#    chfs --path="d:/" --port=8080
 #  //通过配置文件进行配置，该文件可以不存在，待以后需要更改配置时使用
-#   chfs --file="./cfg.ini"
 #---------------------------------------
 
 # 监听端口
@@ -114,7 +93,7 @@ rule=::r|admin:ingress123:rw
 # 如果赋值为空，表示禁用日志
 log=
 # 网页标题
-html.title=爱墙文件服务
+html.title=文件服务
 
 # 网页顶部的公告板。可以是文字，也可以是HTML标签，此时，需要适用一对``(反单引号，通过键盘左上角的ESC键下面的那个键输出)来包住所有HTML标签。几个例子：
 #     1,html.notice=内部资料，请勿传播
@@ -138,14 +117,4 @@ ssl.key=
 session.timeout=
 
 ```
-
-
-
-## 其他搭建文件服务器的方法
-
-### Nginx auto index
-
-### MiniIO
-
-### GoHttpServer
 
